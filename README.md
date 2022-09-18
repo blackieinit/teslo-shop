@@ -4,16 +4,12 @@
 
 # Teslo API
 
-1. Create environment variables
-
-```
-DB_PASSWORD= password database
-DB_NAME= name database
-```
-
-
-2. Start the database
-
+1. Clone repository
+2. ```yarn install```
+3. Clone the file ```.env.template``` and rename to ```.env```
+4. Change the environment variables
+5. Start the database
 ```
 docker-compose up -d
 ```
+6. Up develoment mode: ```yarn start:dev```
