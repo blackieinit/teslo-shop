@@ -13,4 +13,6 @@
 
 2. Start the database
 
-```docker-compose up -d```
+```
+docker-compose up -d
+```
