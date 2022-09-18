@@ -6,8 +6,9 @@
 
 1. Create environment variables
 
-```DB_PASSWORD= password database
-   DB_NAME= name database
+```
+DB_PASSWORD= password database
+DB_NAME= name database
 ```
 
 
