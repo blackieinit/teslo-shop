@@ -7,7 +7,8 @@
 1. Create environment variables
 
 ```DB_PASSWORD= password database
-   DB_NAME= name database```
+   DB_NAME= name database
+```
 
 
 2. Start the database
