@@ -1,4 +1,5 @@
 import { BadRequestException, Controller, Get, Param, Post, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { diskStorage } from 'multer';
@@ -7,7 +8,10 @@ import { fileFilter, fileNamer } from './helpers/index'
 
 @Controller('files')
 export class FilesController {
-  constructor(private readonly filesService: FilesService) {}
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly configService: ConfigService
+  ) {}
 
   @Get('products/:imageName')
   findOne(
@@ -36,7 +40,7 @@ export class FilesController {
       throw new BadRequestException("Image is empty")
     };
 
-    const secureURL = `${image.filename}`;
+    const secureURL = `${ this.configService.get('HOST_API') }/files/products/${ image.filename }`;
     return secureURL;
   }
 
