@@ -1,5 +1,5 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import * as bcrypt from 'bcrypt';
 
 @Entity({ name: 'users' })
 export class User {
@@ -36,8 +36,9 @@ export class User {
     roles: string[];
     
     @BeforeInsert()
-    createUser() {
+    async createUser() {
         this.isActive = false;
+        this.password = await bcrypt.hash(this.password, 10);
     }
 
 }
