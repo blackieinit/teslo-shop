@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity({ name: 'users' })
@@ -35,4 +35,9 @@ export class User {
     })
     roles: string[];
     
+    @BeforeInsert()
+    createUser() {
+        this.isActive = false;
+    }
+
 }
