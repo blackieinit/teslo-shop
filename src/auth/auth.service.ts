@@ -27,26 +27,24 @@ export class AuthService {
     }
   }
 
-  async login( loginUserDto: LoginUserDto  ) {
-    
-
-    return {
-      /* access_token: this.jwtService.sign({
-        email,
+  async login( user: any  ) {
+    return user
+    /* return {
+      access_token: this.jwtService.sign({
+        email: user.email,
         sub: user.id
-      }) */
-    }
+      })
+    } */
   }
 
-  public async validateUser( loginUserDto: LoginUserDto) {
-    const user = await this.userRepository.findOneBy( { email: loginUserDto.email } );
-    
-    if ( !user || !await bcrypt.compare(loginUserDto.password, user.password)) {
+  public async validateUser( username, password ) {
+    const user = await this.userRepository.findOneBy( { email: username } );
+    if ( user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
       return result;
     }
 
-    return false;
+    return null;
       
   }
 
